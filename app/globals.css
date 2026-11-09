@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f6f4ef;
+  color: #16202a;
+}
+
+::selection {
+  background: #c4a36a;
+  color: #07131d;
+}
+
+:focus-visible {
+  outline: 2px solid #9a7340;
+  outline-offset: 3px;
+}
+
+.prose-measure {
+  max-width: 42rem;
+}
