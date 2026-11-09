@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Manrope } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
@@ -100,6 +101,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <main id="content">{children}</main>
         <Footer />
+        <GoogleAnalytics />
       </body>
     </html>
   );
