@@ -1,0 +1,6 @@
+# Cloudflare Pages (direct upload). DNS for panpanauto.com stays on Aliyun.
+# www CNAME → panpanauto.pages.dev. Do not put INQUIRY_WEBHOOK_URL here.
+name = "panpanauto"
+pages_build_output_dir = "./out"
+compatibility_date = "2026-11-09"
+compatibility_flags = ["nodejs_compat"]

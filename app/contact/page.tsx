@@ -34,13 +34,7 @@ const steps = [
   "Optional next step — if a dealership fits, we point you to the application outline or a written policy (TBD).",
 ];
 
-export default async function ContactPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ intent?: string | string[] }>;
-}) {
-  const params = await searchParams;
-  const intentValue = Array.isArray(params.intent) ? params.intent[0] : params.intent;
+export default function ContactPage() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -118,9 +112,9 @@ export default async function ContactPage({
           </p>
         </section>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
-          <InquiryForm initialIntent={intentValue ?? ""} />
-          <div className="space-y-8">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <InquiryForm />
+          <div className="min-w-0 space-y-8">
             <section>
               <h2 className="text-2xl font-semibold text-navy-950">What happens next</h2>
               <ol className="mt-4 space-y-3 text-sm leading-6">

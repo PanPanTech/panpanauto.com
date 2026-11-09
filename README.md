@@ -13,20 +13,57 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
-Production build:
-
-```bash
-npm run build
-npm start
-```
+Open [http://localhost:3000](http://localhost:3000). `npm run dev` is the Next.js UI server. It does not run the Pages Function, so the inquiry form returns an error there.
 
 Requires Node.js 20 or newer.
 
+## Cloudflare Pages
+
+The site is a static export (`output: 'export'`) plus Pages Functions, so `www` can be an Aliyun CNAME to `panpanauto.pages.dev` while the zone stays on Aliyun.
+
+```bash
+npm install
+npm run pages:build
+npx wrangler pages deploy out --project-name=panpanauto
+```
+
+`npm run build` is the same export and writes `out/`. `pages:deploy` runs that wrangler command. The Pages project name is `panpanauto`, so the default host is `https://panpanauto.pages.dev`.
+
+Wrangler config is `wrangler.toml` (`compatibility_date` 2026-11-09, `nodejs_compat`). No Cloudflare API token is required in CI. Deploy from a machine that has run `npx wrangler login`.
+
+Preview the export and the Functions together:
+
+```bash
+npm run build
+npm run pages:dev
+```
+
+### Aliyun DNS
+
+DNS stays on Aliyun. After the first deploy:
+
+1. In the Cloudflare dashboard, open the Pages project `panpanauto` → **Custom domains** → add `www.panpanauto.com`. A CNAME that is not attached to the project returns error 522.
+2. In Aliyun DNS (云解析) for `panpanauto.com`, add:
+
+| Type | Host | Value |
+| --- | --- | --- |
+| CNAME | `www` | `panpanauto.pages.dev` |
+
+Use the default line. Do not add a conflicting A record on `www`. TTL can stay at the Aliyun default (600 seconds is fine).
+
+If the Pages UI shows an extra verification TXT, add that record too. Certificate issuance is handled by Cloudflare once the CNAME resolves.
+
+The apex (`panpanauto.com`) is not a Pages custom domain while the zone is outside Cloudflare. Leave it TBD, or point apex visitors at `www` with an Aliyun URL redirect. Do not move the nameservers for this setup.
+
+### Git integration (optional)
+
+If the GitHub repo is connected to the Pages project later: build command `npm run pages:build` (or `npm run build`), output directory `out`. Set `INQUIRY_WEBHOOK_URL` as a Pages secret, not as a committed variable.
+
 ## Inquiry form
 
-`POST /api/inquiry/` accepts the contact form. Required fields: company, contact name, role, country or region, work email, at least one product interest, and consent.
+`POST /api/inquiry/` accepts the contact form. The client posts to `/api/inquiry/`. Required fields: company, contact name, role, country or region, work email, at least one product interest, and consent.
+
+The handler is the Pages Function `functions/api/inquiry.ts` (Pages treats the trailing slash as optional). It is not a Next.js route, because route handlers cannot be statically exported.
 
 Optional environment variable (see `.env.example`):
 
@@ -34,9 +71,15 @@ Optional environment variable (see `.env.example`):
 INQUIRY_WEBHOOK_URL=https://example.com/hooks/inquiry
 ```
 
-When `INQUIRY_WEBHOOK_URL` is an `http` or `https` URL, the server forwards the inquiry JSON to it. When it is unset, the server accepts the inquiry and writes it to the process log. Copy `.env.example` to `.env.local` for local development. Do not commit secrets.
+When `INQUIRY_WEBHOOK_URL` is an `http` or `https` URL, the Function forwards the inquiry JSON to it. When it is unset, the Function accepts the inquiry and writes it to the log. Set it in production with:
 
-`/inquiry/` permanently redirects (301) to `/contact/` and keeps the query string, including `intent` (`sample`, `wholesale`, `dealer`, `starter`, `full-body`).
+```bash
+npx wrangler pages secret put INQUIRY_WEBHOOK_URL --project-name=panpanauto
+```
+
+For `npm run pages:dev`, put the same line in `.dev.vars` (gitignored). Do not commit secrets.
+
+`/inquiry/` permanently redirects (301) to `/contact/` and keeps the query string, including `intent` (`sample`, `wholesale`, `dealer`, `starter`, `full-body`). The redirect is `functions/inquiry.ts`. On the static contact page, `?intent=` is applied in the browser.
 
 ## Routes
 

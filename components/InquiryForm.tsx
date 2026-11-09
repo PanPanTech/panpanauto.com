@@ -1,17 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { intentPresets, interests, roles, type Interest } from "@/lib/inquiry";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function InquiryForm({ initialIntent = "" }: { initialIntent?: string }) {
-  const intent = initialIntent in intentPresets ? initialIntent : "";
-  const preset = intent ? intentPresets[intent] : undefined;
-  const [selected, setSelected] = useState<Set<Interest>>(() => new Set(preset?.interests ?? []));
+  const presetIntent = initialIntent in intentPresets ? initialIntent : "";
+  const [intent, setIntent] = useState(presetIntent);
+  const [selected, setSelected] = useState<Set<Interest>>(
+    () => new Set(presetIntent ? intentPresets[presetIntent].interests : []),
+  );
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<string[]>([]);
+  const preset = intent ? intentPresets[intent] : undefined;
+
+  // Static export cannot read searchParams on the server. /contact/?intent=sample
+  // still pre-selects interests after hydration.
+  useEffect(() => {
+    if (presetIntent) return;
+    const raw = new URLSearchParams(window.location.search).get("intent") ?? "";
+    if (!(raw in intentPresets)) return;
+    setIntent(raw);
+    setSelected(new Set(intentPresets[raw].interests));
+  }, [presetIntent]);
 
   function toggle(interest: Interest) {
     setSelected((current) => {
@@ -87,7 +100,7 @@ export function InquiryForm({ initialIntent = "" }: { initialIntent?: string }) 
   }
 
   return (
-    <form id="inquiry-form" onSubmit={onSubmit} className="rounded-2xl border border-line bg-white p-5 sm:p-7" noValidate>
+    <form id="inquiry-form" onSubmit={onSubmit} className="min-w-0 rounded-2xl border border-line bg-white p-5 sm:p-7" noValidate>
       <h2 className="text-2xl font-semibold tracking-tight text-navy-950">Send an inquiry</h2>
       <p className="mt-2 text-sm leading-6 text-ink/75">
         The more complete the form, the faster a quote can be prepared. Fields marked * are required.
@@ -118,7 +131,7 @@ export function InquiryForm({ initialIntent = "" }: { initialIntent?: string }) 
         <Field label="Contact name *" name="contactName" required placeholder="Who should we ask for?" />
         <label className="grid gap-1 text-sm font-medium">
           Your role *
-          <select name="role" required defaultValue="" className="rounded-lg border border-line bg-paper px-3 py-2 font-normal">
+          <select name="role" required defaultValue="" className="w-full min-w-0 rounded-lg border border-line bg-paper px-3 py-2 font-normal">
             <option value="" disabled>
               Shop owner / purchasing / install lead / dealer / other
             </option>
@@ -156,7 +169,7 @@ export function InquiryForm({ initialIntent = "" }: { initialIntent?: string }) 
           name="message"
           rows={5}
           placeholder="Vehicle project, sample request, regional dealership, or timing."
-          className="rounded-lg border border-line bg-paper px-3 py-2 font-normal"
+          className="w-full min-w-0 rounded-lg border border-line bg-paper px-3 py-2 font-normal"
         />
       </label>
 
@@ -212,7 +225,7 @@ function Field({
         required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="rounded-lg border border-line bg-paper px-3 py-2 font-normal"
+        className="w-full min-w-0 rounded-lg border border-line bg-paper px-3 py-2 font-normal"
       />
     </label>
   );
