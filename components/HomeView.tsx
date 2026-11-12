@@ -2,8 +2,11 @@ import Link from "next/link";
 import { FaqList, faqJsonLd } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { VehicleFigure } from "@/components/VehicleFigure";
+import { InstallationPhoto } from "@/components/InstallationPhoto";
+import { ProcessVideo } from "@/components/ProcessVideo";
 import { featuredSeries, ppfSeries, tintSeries } from "@/lib/catalog";
 import { homeFaqs } from "@/lib/faq";
+import { homepageInstallationTiles, homepageProcessClip, installationsPath } from "@/lib/installations";
 import { absoluteUrl, site } from "@/lib/site";
 import { shots } from "@/lib/vehicles";
 
@@ -308,33 +311,56 @@ export function HomeView() {
 
       <section className="mx-auto max-w-page px-4 py-16 sm:px-6" aria-labelledby="proof-heading">
         <h2 id="proof-heading" className="text-3xl font-semibold tracking-tight text-navy-950">
-          Shop stories and delivery notes
+          Shop installations
         </h2>
         <p className="prose-measure mt-3 leading-7 text-ink/75">
-          Real installations, authorization scans, a warranty flow, and reorder feedback will be published when the
-          files exist. Until then, discuss the assortment and the lead time on an inquiry. The photos below are
-          Xiaomi EV references, not PanPan work.
+          Finished vehicles photographed at a partner installation shop, and a short process clip from the bay. This
+          is authorized-installer work, not PanPan Auto’s own retail store. Film series and SKUs are not labeled.
         </p>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {[
-            { shot: "yu7Showroom" as const, title: "Authorization proof", note: "Image / PDF: TBD" },
-            { shot: "yu7Mountain" as const, title: "Install / delivery story", note: "Before-and-after vehicle, city, model, and series: TBD" },
-            { shot: "n70" as const, title: "Service measures", note: "Response time, reorder rate, and shop coverage: TBD. Not invented." },
-          ].map((card) => (
-            <article key={card.title} className="overflow-hidden rounded-2xl border border-line bg-white">
-              <VehicleFigure id={card.shot} caption={false} />
-              <div className="p-4">
-                <h3 className="font-semibold">{card.title}</h3>
-                <p className="mt-2 text-sm text-ink/70">{card.note}</p>
-                <p className="mt-2 text-xs text-navy-800/70">Xiaomi EV reference photo — not a PanPan installation.</p>
-              </div>
-            </article>
-          ))}
+        <div className="mt-8 grid items-start gap-6 xl:grid-cols-[16rem_minmax(0,1fr)]">
+          <figure className="mx-auto w-full max-w-sm xl:max-w-none">
+            <ProcessVideo
+              video={homepageProcessClip}
+              autoPlay
+              loop
+              preload="metadata"
+              className="rounded-2xl"
+            />
+            <figcaption className="mt-2 text-sm leading-6 text-ink/75">
+              <Link href={`${installationsPath}#bay-heading`} className="font-semibold text-navy-950 hover:text-brass">
+                From the bay
+              </Link>
+              <span className="mt-1 block">{homepageProcessClip.description}</span>
+            </figcaption>
+          </figure>
+          <div className="grid items-start gap-4 md:grid-cols-3">
+            {homepageInstallationTiles.map((tile) => (
+              <article key={tile.file} className="overflow-hidden rounded-2xl border border-line bg-white">
+                <InstallationPhoto
+                  photo={tile}
+                  caption={false}
+                  sizes="(min-width: 768px) 240px, 100vw"
+                />
+                <div className="p-4">
+                  <h3 className="font-semibold">
+                    <Link href={`${installationsPath}#${tile.caseId}`} className="hover:text-brass">
+                      {tile.vehicle}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-ink/70">{tile.setting}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
         <p className="mt-6 text-sm font-semibold">
-          <Link href="/contact/" className="underline decoration-brass underline-offset-4">Start with an inquiry</Link>
+          <Link href={installationsPath} className="underline decoration-brass underline-offset-4">
+            View shop installations
+          </Link>
           {" · "}
-          <Link href="/about/" className="underline decoration-brass underline-offset-4">About us</Link>
+          <Link href="/contact/" className="underline decoration-brass underline-offset-4">
+            Start with an inquiry
+          </Link>
         </p>
       </section>
 
