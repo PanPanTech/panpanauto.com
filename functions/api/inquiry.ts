@@ -1,4 +1,7 @@
 import { parseInquiry, type InquiryInput } from "../../lib/inquiry";
+import { site } from "../../lib/site";
+
+const deliveryError = `The inquiry could not be delivered. Please try again, email ${site.email}, or call ${site.phoneDisplay}.`;
 
 interface InquiryEnv {
   INQUIRY_WEBHOOK_URL?: string;
@@ -70,14 +73,14 @@ async function postInquiry(context: {
     if (!response.ok) {
       console.error("inquiry.webhook_failed", { status: response.status });
       return json(
-        { ok: false, errors: ["The inquiry could not be delivered. Please try again or call +86 13925118851."] },
+        { ok: false, errors: [deliveryError] },
         502,
       );
     }
   } catch (error) {
     console.error("inquiry.webhook_error", error instanceof Error ? error.message : "unknown");
     return json(
-      { ok: false, errors: ["The inquiry could not be delivered. Please try again or call +86 13925118851."] },
+      { ok: false, errors: [deliveryError] },
       502,
     );
   }

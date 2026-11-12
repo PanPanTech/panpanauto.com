@@ -1,5 +1,6 @@
 import { ppfSeries, tintSeries, featuredSeries } from "@/lib/catalog";
 import type { Doc } from "@/components/InteriorPage";
+import { site } from "@/lib/site";
 
 const home = { href: "/", label: "Home" };
 
@@ -202,7 +203,7 @@ export const docs = {
     crumbs: [home, { label: "About" }],
     paragraphs: [
       "We are a multi-brand authorized dealer and distributor. The portfolio includes ISF, NKODA, and NANOLINK. ISF is the featured paint-protection brand. Territory and product-line coverage follow written authorization and are TBD on this page until that document is published.",
-      "We are the contact for wholesale quotes, samples, and partnership talks. The public phone is +86 13925118851. Email, WeChat, address, and hours are TBD.",
+      `We are the contact for wholesale quotes, samples, and partnership talks. The public phone is ${site.phoneDisplay}. Email is ${site.email}. WeChat, address, and hours are TBD.`,
       "We are not the ISF or NANOLINK factory website. We do not claim to be the source factory, and we do not publish unverified sales rankings, warranty years, MOQ, or lead times.",
     ],
     links: [

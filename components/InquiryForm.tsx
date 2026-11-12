@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { intentPresets, interests, roles, type Interest } from "@/lib/inquiry";
+import { site } from "@/lib/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -117,7 +118,10 @@ export function InquiryForm({ initialIntent = "" }: { initialIntent?: string }) 
       ) : null}
       {errors.length ? (
         <div className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900" role="alert">
-          <p className="font-semibold">Submission failed. Please try again, or use the backup channels below (email is still TBD).</p>
+          <p className="font-semibold">
+            Submission failed. Please try again, or email{" "}
+            <a className="underline" href={`mailto:${site.email}`}>{site.email}</a>.
+          </p>
           <ul className="mt-2 list-disc pl-5">
             {errors.map((error) => (
               <li key={error}>{error}</li>

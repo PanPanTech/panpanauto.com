@@ -134,12 +134,12 @@ export default function ContactPage() {
             </section>
             <section>
               <h2 className="text-2xl font-semibold text-navy-950">Other ways to reach us</h2>
-              <p className="mt-2 text-sm text-ink/70">The form is preferred. Channels that are not configured yet stay TBD.</p>
+              <p className="mt-2 text-sm text-ink/70">The form is preferred. WeChat, the office address, and hours stay TBD.</p>
               <table className="mt-4 w-full text-sm">
                 <caption className="sr-only">Contact channels</caption>
                 <tbody>
                   {[
-                    ["Sales email", "TBD", "Put the company name and the series in the subject once an address is published."],
+                    ["Sales email", site.email, "Include the company name and the series in the subject."],
                     ["Phone / WhatsApp", site.phoneDisplay, "Public business number, with country code."],
                     ["WeChat", "TBD", "Optional for shops in China."],
                     ["Office address", "TBD", "Published only if we show a public office."],
@@ -150,6 +150,8 @@ export default function ContactPage() {
                       <td className="py-3">
                         {channel.startsWith("Phone") ? (
                           <a className="font-semibold" href={`tel:${site.phoneTel}`}>{value}</a>
+                        ) : channel === "Sales email" ? (
+                          <a className="font-semibold" href={`mailto:${site.email}`}>{value}</a>
                         ) : (
                           <span className="font-semibold">{value}</span>
                         )}
@@ -170,7 +172,7 @@ export default function ContactPage() {
             <li>Price, MOQ, warranty years, lead time, and Incoterms follow the official brand page and written confirmation. Placeholders on this site are TBD. They are not estimates.</li>
             <li>We do not ask you to pay an unclear fee before samples and terms are confirmed. The receiving account is stated in writing and is TBD.</li>
             <li>Territory exclusivity, training, and cut-film software depend on the brand authorization and the cooperation level (TBD).</li>
-            <li>Public phone: {site.phoneDisplay}.</li>
+            <li>Public phone: {site.phoneDisplay}. Sales email: <a className="font-semibold" href={`mailto:${site.email}`}>{site.email}</a>.</li>
           </ul>
           <p className="mt-3 text-sm">
             <Link className="underline" href="/about/">About</Link>

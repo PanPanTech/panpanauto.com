@@ -69,9 +69,11 @@ const graph = {
         "PanPan Auto is a multi-brand authorized dealer and distributor of auto film and parts (ISF, NKODA, NANOLINK). It is not a factory website. ISF is the featured paint-protection brand.",
       brand: { "@type": "Brand", name: "PanPan Auto" },
       telephone: site.phoneDisplay,
+      email: site.email,
       contactPoint: {
         "@type": "ContactPoint",
         telephone: site.phoneDisplay,
+        email: site.email,
         contactType: "sales",
         availableLanguage: ["en", "zh-Hans"],
       },

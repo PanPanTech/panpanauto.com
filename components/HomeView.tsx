@@ -59,7 +59,7 @@ const trust = [
   },
   {
     title: "Inquiries a person can follow",
-    body: `Company details plus the series you want, so a quote has somewhere to start. Phone ${site.phoneDisplay}. Response time: TBD.`,
+    body: `Company details plus the series you want, so a quote has somewhere to start. Phone ${site.phoneDisplay}. Email ${site.email}. Response time: TBD.`,
   },
   {
     title: "A sample path",
@@ -84,53 +84,60 @@ export function HomeView() {
       <JsonLd data={itemList} />
       <JsonLd data={{ "@context": "https://schema.org", ...faqJsonLd(homeFaqs) }} />
 
-      <section className="relative isolate min-h-[78vh] bg-navy-950 text-paper">
-        <img
-          src={shots.su7Coast.src}
-          alt={shots.su7Coast.alt}
-          width={shots.su7Coast.width}
-          height={shots.su7Coast.height}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-950/20" />
-        <div className="relative mx-auto flex min-h-[78vh] max-w-page flex-col justify-end px-4 py-16 sm:px-6 md:py-24">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brass-bright">
-            ISF · NKODA · NANOLINK
-          </p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">
-            PanPan Auto — wholesale ISF paint protection film and auto film
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-paper/90">
-            For tint shops, restyling studios, and regional distributors. <strong>PanPan Auto</strong> is a
-            multi-brand authorized dealer. The assortment includes <strong>ISF paint protection film</strong> and{" "}
-            <strong>NKODA / NANOLINK</strong> film, so window tint, install supplies, and selected parts can fill one
-            purchase list. Quotes, samples, and dealer talks start at the same door.
-          </p>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-paper/75">
-            This B2B wholesale site is operated by PanPan Auto / PanPanTech (panpanauto.com). We are an authorized
-            dealer and distributor channel for brands including ISF, NKODA, and NANOLINK. We are not the ISF or
-            NANOLINK factory website. Ask us for specifications, lead times, and wholesale tiers. Anything not yet
-            confirmed is marked TBD and should be checked on the official brand page.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact/" className="rounded-full bg-brass-bright px-5 py-3 text-sm font-semibold text-navy-950">
-              Get a wholesale quote
-            </Link>
-            <Link href="/products/ppf/" className="rounded-full border border-white/40 px-5 py-3 text-sm font-semibold">
-              Browse PPF
-            </Link>
-            <Link href="/dealers/apply/" className="px-2 py-3 text-sm font-semibold underline decoration-brass-bright underline-offset-4">
-              Apply for a dealership
-            </Link>
+      <section className="bg-navy-950 text-paper">
+        <div className="grid">
+          <img
+            src={shots.su7Coast.src}
+            alt={shots.su7Coast.alt}
+            width={shots.su7Coast.width}
+            height={shots.su7Coast.height}
+            fetchPriority="high"
+            decoding="async"
+            className="col-start-1 row-start-1 h-auto w-full self-start"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none col-start-1 row-start-1 hidden bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/10 xl:block"
+          />
+          <div className="col-start-1 row-start-2 xl:row-start-1 xl:self-end">
+            <div className="mx-auto flex max-w-page flex-col justify-end px-4 py-10 sm:px-6 xl:py-14">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brass-bright">
+                ISF · NKODA · NANOLINK
+              </p>
+              <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl">
+                PanPan Auto — wholesale ISF paint protection film and auto film
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-paper/90">
+                For tint shops, restyling studios, and regional distributors. <strong>PanPan Auto</strong> is a
+                multi-brand authorized dealer. The assortment includes <strong>ISF paint protection film</strong> and{" "}
+                <strong>NKODA / NANOLINK</strong> film, so window tint, install supplies, and selected parts can fill one
+                purchase list. Quotes, samples, and dealer talks start at the same door.
+              </p>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-paper/75">
+                This B2B wholesale site is operated by PanPan Auto / PanPanTech (panpanauto.com). We are an authorized
+                dealer and distributor channel for brands including ISF, NKODA, and NANOLINK. We are not the ISF or
+                NANOLINK factory website. Ask us for specifications, lead times, and wholesale tiers. Anything not yet
+                confirmed is marked TBD and should be checked on the official brand page.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/contact/" className="rounded-full bg-brass-bright px-5 py-3 text-sm font-semibold text-navy-950">
+                  Get a wholesale quote
+                </Link>
+                <Link href="/products/ppf/" className="rounded-full border border-white/40 px-5 py-3 text-sm font-semibold">
+                  Browse PPF
+                </Link>
+                <Link href="/dealers/apply/" className="px-2 py-3 text-sm font-semibold underline decoration-brass-bright underline-offset-4">
+                  Apply for a dealership
+                </Link>
+              </div>
+              <p className="mt-8 max-w-xl text-xs leading-5 text-paper/70">
+                Xiaomi EV reference photo from xiaomiev.com — not a PanPan installation.{" "}
+                <Link className="underline" href="/products/window-tint/">Window tint</Link>
+                {" · "}
+                <Link className="underline" href="/wholesale/">Wholesale</Link>
+              </p>
+            </div>
           </div>
-          <p className="mt-8 max-w-xl text-xs leading-5 text-paper/70">
-            Xiaomi EV reference photo from xiaomiev.com — not a PanPan installation.{" "}
-            <Link className="underline" href="/products/window-tint/">Window tint</Link>
-            {" · "}
-            <Link className="underline" href="/wholesale/">Wholesale</Link>
-          </p>
         </div>
       </section>
 
@@ -166,7 +173,7 @@ export function HomeView() {
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {pillars.map((pillar) => (
             <article key={pillar.href} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
-              <VehicleFigure id={pillar.shot} caption={false} className="aspect-[16/10] bg-navy-900" />
+              <VehicleFigure id={pillar.shot} caption={false} className="bg-navy-900" />
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="text-xl font-semibold text-navy-950">{pillar.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-ink/75">{pillar.body}</p>
@@ -201,7 +208,7 @@ export function HomeView() {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featuredSeries.map((series) => (
               <li key={series.href} className="overflow-hidden rounded-2xl bg-white shadow-sm">
-                <VehicleFigure id={series.shot} caption={false} className="aspect-[16/9]" />
+                <VehicleFigure id={series.shot} caption={false} />
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">
                     <Link href={series.href}>{series.name}</Link>
@@ -239,7 +246,7 @@ export function HomeView() {
           <h3 className="mt-6 text-lg font-semibold">The boundary we will actually keep</h3>
           <ul className="mt-3 space-y-2 text-sm leading-6 text-ink/80">
             <li>We are a multi-brand authorized dealer and distributor of auto film and parts (ISF, NKODA, NANOLINK, and related lines). Territory and product coverage follow written authorization and are otherwise TBD.</li>
-            <li>We handle wholesale quotes, samples, and partnership talks for shops and distributors. Public phone: {site.phoneDisplay}.</li>
+            <li>We handle wholesale quotes, samples, and partnership talks for shops and distributors. Public phone: {site.phoneDisplay}. Email: {site.email}.</li>
             <li>We are not the ISF or NANOLINK factory website, and we are not a single-brand factory site. We do not impersonate a source factory or claim an exclusivity we have not been given.</li>
             <li>We do not publish national sales rankings or invented warranty, MOQ, or lead-time figures. Unconfirmed items stay TBD and follow the official brand page.</li>
           </ul>
@@ -295,9 +302,7 @@ export function HomeView() {
               </p>
             </article>
           </div>
-          <div className="mt-8 overflow-hidden rounded-2xl">
-            <VehicleFigure id="n90" className="max-h-[420px]" />
-          </div>
+          <VehicleFigure id="n90" caption={false} className="mt-8 overflow-hidden rounded-2xl" />
         </div>
       </section>
 
@@ -317,7 +322,7 @@ export function HomeView() {
             { shot: "n70" as const, title: "Service measures", note: "Response time, reorder rate, and shop coverage: TBD. Not invented." },
           ].map((card) => (
             <article key={card.title} className="overflow-hidden rounded-2xl border border-line bg-white">
-              <VehicleFigure id={card.shot} caption={false} className="aspect-[16/10]" />
+              <VehicleFigure id={card.shot} caption={false} />
               <div className="p-4">
                 <h3 className="font-semibold">{card.title}</h3>
                 <p className="mt-2 text-sm text-ink/70">{card.note}</p>
@@ -404,7 +409,7 @@ export function HomeView() {
             <p className="mt-3 max-w-2xl leading-7">
               Tell us the shop type, the region, and the series. PanPan Auto replies with the sample and wholesale
               next step. The promised response time is TBD and will be written here and on the inquiry page before it
-              is treated as a commitment. You can also call <a className="font-semibold underline" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>.
+              is treated as a commitment. You can also call <a className="font-semibold underline" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a> or email <a className="font-semibold underline" href={`mailto:${site.email}`}>{site.email}</a>.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

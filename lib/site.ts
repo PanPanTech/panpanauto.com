@@ -5,7 +5,7 @@ export const site = {
   url: "https://panpanauto.com",
   phoneDisplay: "+86 13925118851",
   phoneTel: "+8613925118851",
-  email: "TBD",
+  email: "panda@panpanauto.com",
   wechat: "TBD",
   address: "TBD",
   hours: "TBD",
