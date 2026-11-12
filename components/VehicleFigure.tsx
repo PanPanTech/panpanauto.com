@@ -27,7 +27,7 @@ export function VehicleFigure({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className="h-full w-full object-cover"
+        className="block h-auto w-full"
       />
       {caption ? (
         <figcaption className="mt-2 text-xs leading-relaxed text-navy-800/80">

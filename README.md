@@ -2,9 +2,9 @@
 
 English B2B wholesale site for [panpanauto.com](https://panpanauto.com). PanPan Auto is a multi-brand **authorized dealer / distributor** for auto film and selected parts (ISF, NKODA, NANOLINK), operated by PanPanTech. It is not a factory website.
 
-Public phone: **+86 13925118851**.
+Public phone: **+86 13925118851**. Public email: **panda@panpanauto.com**.
 
-Email, WeChat, address, hours, MOQ, warranty, lead time, and Incoterms are **TBD** until confirmed. The site does not invent those figures.
+WeChat, address, hours, MOQ, warranty, lead time, and Incoterms are **TBD** until confirmed. The site does not invent those figures.
 
 ## Run locally
 

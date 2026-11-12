@@ -1,4 +1,5 @@
 import type { FaqItem } from "@/components/FaqList";
+import { site } from "@/lib/site";
 
 export const homeFaqs: FaqItem[] = [
   {
@@ -37,6 +38,6 @@ export const contactFaqs: FaqItem[] = [
   {
     question: "How soon will someone reply?",
     answer:
-      "The target first response time is TBD. If you do not hear back, use the phone number +86 13925118851 and include your company name. A backup email address is still TBD.",
+      `The target first response time is TBD. If you do not hear back, call ${site.phoneDisplay} or email ${site.email} and include your company name.`,
   },
 ];

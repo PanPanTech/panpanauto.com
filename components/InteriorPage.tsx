@@ -96,7 +96,7 @@ export function InteriorPage({ page }: { page: Doc }) {
             <ul className="mt-5 grid gap-4 md:grid-cols-2">
               {page.series.map((series) => (
                 <li key={series.href} className="overflow-hidden rounded-2xl border border-line bg-white">
-                  <VehicleFigure id={series.shot} caption={false} className="aspect-[16/9] bg-navy-900" />
+                  <VehicleFigure id={series.shot} caption={false} className="bg-navy-900" />
                   <div className="p-4">
                     <h3 className="text-lg font-semibold">
                       <Link href={series.href} className="hover:text-brass">

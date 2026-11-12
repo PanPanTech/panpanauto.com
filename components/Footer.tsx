@@ -19,7 +19,11 @@ export function Footer() {
           <dl className="mt-4 space-y-1 text-sm text-paper/70">
             <div className="flex gap-2">
               <dt>Email</dt>
-              <dd>{site.email}</dd>
+              <dd>
+                <a className="hover:text-white" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </dd>
             </div>
             <div className="flex gap-2">
               <dt>WeChat</dt>
