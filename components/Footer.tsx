@@ -58,7 +58,10 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-page flex-col gap-2 px-4 py-5 text-xs text-paper/60 sm:px-6 md:flex-row md:justify-between">
-          <p>© {new Date().getFullYear()} PanPan Auto. Vehicle photos are Xiaomi EV references, not PanPan installations.</p>
+          <p>
+            © {new Date().getFullYear()} PanPan Auto. Studio reference photos are Xiaomi EV images, not PanPan
+            installations. Shop stills are partner-shop work.
+          </p>
           <p>panpanauto.com · Specifications, MOQ, warranty, and lead time remain TBD until confirmed.</p>
         </div>
       </div>

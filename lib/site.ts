@@ -24,6 +24,7 @@ export const primaryNav: NavItem[] = [
   { href: "/products/window-tint/", label: "Window tint" },
   { href: "/wholesale/", label: "Wholesale" },
   { href: "/solutions/", label: "Solutions" },
+  { href: "/installations/", label: "Installations" },
   { href: "/about/", label: "About" },
   { href: "/blog/", label: "Guides" },
 ];
@@ -48,6 +49,7 @@ export const footerNav: { title: string; links: NavItem[] }[] = [
       { href: "/wholesale/", label: "Wholesale policy" },
       { href: "/dealers/apply/", label: "Dealer application" },
       { href: "/solutions/", label: "Shop programs" },
+      { href: "/installations/", label: "Shop installations" },
       { href: "/contact/", label: "Wholesale inquiry" },
       { href: "/about/", label: "About the authorization" },
     ],
