@@ -22,7 +22,11 @@
 - `/installations/` 和首页施工区的照片 / 视频是**合作门店**实拍，不是 PanPan 自有门店，也没有标注膜系列。不要裁掉车轮，不要旋转或替换施工视频。
 
 ## 关键词策略
-- TODO：等 GSC 有数据后（`sc-domain:panpanauto.com`，近 3 个月）补充真实查询词和排名。
+- GSC 基线（`sc-domain:panpanauto.com`，近 3 个月，截至 2026-11-23）：0 点击 / 42 曝光 / 平均排名 41.9。收录 5 个，15 个「已发现 - 尚未编入索引」。GSC 里提交的是 `https://www.panpanauto.com/sitemap.xml`，而 sitemap 里的网址是 apex。
+  - 已有曝光：nanolink ppf dealers / installers / locations / near me（排名 41–70）、tpu ppf / tpu paint protection film / what is tpu ppf（排名 44–89）、品牌词 pan pan auto（7.7）、"xiaomi ev"（3.0，小米参考图带来的无关曝光）
+  - 有曝光的网页：`/`（20）、`/blog/what-is-tpu-ppf/`（11）、`/about/`（10，排名 12.5）
+- GA4 基线（近 90 天）：86 会话，100% Direct，关键事件 0；`/` 占 78% 浏览。`/&ct=ga...`、`/&source=alertsmail...` 这类路径来自 Google 快讯邮件的坏链接（线上返回 404），不是真实页面。
+- **最快能拿的词**：NANOLINK 经销商类（nanolink ppf dealers / installers / where to buy）——Google 已把站点和这些词关联，需要一个专门的 NANOLINK 授权经销商页。
 - **主攻（商业意图）**：wholesale PPF / PPF wholesale supplier / paint protection film distributor / TPU PPF wholesale / matte PPF wholesale / color PPF wholesale / nano ceramic window tint wholesale / ISF PPF / NKODA PPF / NANOLINK film
 - **AI 引用型问句**（博客承接）：what is TPU PPF、clear vs matte PPF、color PPF vs vinyl wrap、VLT / TSER / IRR 怎么比、PPF 样品怎么验、批发报价怎么比到岸成本
 - **不追**：消费者 DIY / 单车价格词（"PPF cost near me"、"how much to wrap my car"）——站点只做批发。
