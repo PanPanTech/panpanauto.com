@@ -1,12 +1,19 @@
 import type { MetadataRoute } from "next";
 import { docs } from "@/lib/docs";
 import { installationsPath } from "@/lib/installations";
+import { getPosts } from "@/lib/posts";
 import { site } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["/", "/contact/", installationsPath, ...Object.values(docs).map((doc) => doc.path)];
+  const paths = [
+    "/",
+    "/contact/",
+    installationsPath,
+    ...Object.values(docs).map((doc) => doc.path),
+    ...getPosts().map((post) => post.path),
+  ];
   const unique = Array.from(new Set(paths));
   return unique.map((path) => ({
     url: `${site.url}${path}`,

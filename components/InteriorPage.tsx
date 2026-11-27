@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Breadcrumbs, breadcrumbJsonLd, type Crumb } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { VehicleFigure } from "@/components/VehicleFigure";
@@ -43,7 +44,7 @@ export function docMetadata(page: Doc): Metadata {
   };
 }
 
-export function InteriorPage({ page }: { page: Doc }) {
+export function InteriorPage({ page, children }: { page: Doc; children?: ReactNode }) {
   return (
     <>
       <JsonLd data={{ "@context": "https://schema.org", ...breadcrumbJsonLd(page.crumbs) }} />
@@ -63,6 +64,8 @@ export function InteriorPage({ page }: { page: Doc }) {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+
+        {children}
 
         {page.showSpecs ? (
           <div className="mt-8 max-w-3xl">
