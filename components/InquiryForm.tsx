@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { intentPresets, interests, roles, type Interest } from "@/lib/inquiry";
 import { site } from "@/lib/site";
+import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -71,6 +72,12 @@ export function InquiryForm({ initialIntent = "" }: { initialIntent?: string }) 
         setErrors(body.errors?.length ? body.errors : ["The inquiry could not be sent. Try again, or use the phone number below."]);
         return;
       }
+      // Count a lead only after the Function accepted it, once per submission.
+      trackEvent("generate_lead", {
+        form_id: "inquiry-form",
+        inquiry_intent: String(payload.intent ?? "") || "none",
+        interest_count: payload.productInterest.length,
+      });
       setStatus("success");
       form.reset();
       setSelected(new Set());

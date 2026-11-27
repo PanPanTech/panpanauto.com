@@ -33,9 +33,9 @@
 - 不和 XPEL、SunTek、LLumar、STEK 等原厂品牌词硬拼；竞品数据只用于选题（本地 `E:\桌面\汽车配件项目\*.xlsx`）。
 
 ## 内容规范
-- 博客草稿在 `E:\桌面\汽车配件项目\PanPan Auto 博客文章\`（6 篇 .md，未上线）；8 周排期和优化清单在 `E:\桌面\汽车配件项目\PanPan Auto 网站优化与博客排期.xlsx`。上线前按排期表的「发布前核实的资料」逐条确认。
+- 长文博客是 `content/blog/<slug>.md`（Markdown，`lib/posts.ts` 解析，`app/blog/[slug]/` 渲染，自动进 sitemap 和 /blog/ 列表，有 FAQ 段会自动出 FAQPage JSON-LD）。原稿在 `E:\桌面\汽车配件项目\PanPan Auto 博客文章\`；8 周排期和优化清单在 `E:\桌面\汽车配件项目\PanPan Auto 网站优化与博客排期.xlsx`。上线前按排期表的「发布前核实的资料」逐条确认。
 - 每篇博客：开头 40–60 词直接回答 + 对比表 / 清单 + 结尾 FAQ（FAQPage JSON-LD）+ 询盘 CTA（`/contact/?intent=...`）
-- 新文章要同步：`lib/docs.ts`（sitemap 从这里生成）、`/blog/` 列表、页脚 Guides 链接、`public/llms.txt`（目前还没有，需新建）
+- 新文章要同步：`public/llms.txt`、`lib/posts.ts` 的 `order`；短页面（产品/品牌页）在 `lib/docs.ts`
 - 标题 ≤ 60 字符，description ≤ 155 字符
 - 内链：博客 → 对应产品页 → `/contact/`
 - 不写没有书面依据的参数、质保、认证、价格；占位统一写 TBD
@@ -44,11 +44,11 @@
 - Next.js 15 App Router，`output: 'export'` 静态导出到 `out/`，Node 20+
 - 托管：**Cloudflare Pages**，项目名 `panpanauto`（`panpanauto.pages.dev`）；DNS 在阿里云
 - 部署：**手动** `npm run pages:build` + `npx wrangler pages deploy out --project-name=panpanauto`（需本机 `wrangler login`）。没有 GitHub Actions，也没有本地定时任务。部署前先 `git pull`，确认本地 = `origin/main`，否则会把旧版本推上线。
-- 线上地址：apex `https://panpanauto.com` 和 `https://www.panpanauto.com` 都返回 200；canonical、sitemap 统一指向 apex（`site.url`）。TODO：www → apex 做单跳 301。
+- 线上地址：apex `https://panpanauto.com` 和 `https://www.panpanauto.com` 都返回 200；canonical、sitemap 统一指向 apex（`site.url`）。`functions/_middleware.ts` 把 www 和 panpanauto.pages.dev 单跳 301 到 apex（预览子域不跳）。
 - `sitemap.xml`、`robots.txt` 由 `app/sitemap.ts`、`app/robots.ts` 生成；sitemap 路径来自 `lib/docs.ts` + `/`、`/contact/`、`/installations/`（共 19 个网址）
 - GA4：`G-9CEF3BK5R2`（媒体资源 563330295，账号 PanPanTech 414295528），代码在 `components/GoogleAnalytics.tsx`
 - 询盘表单：`components/InquiryForm.tsx` → `POST /api/inquiry/`（Pages Function `functions/api/inquiry.ts`，校验在 `lib/inquiry.ts`）。设置了 `INQUIRY_WEBHOOK_URL`（Pages secret）才会转发，否则**只写日志**。TODO：确认线上已配置该 secret，询盘能到销售邮箱 / CRM。
-- 转化事件：TODO 未实现。需要在接口返回 `ok: true` 后发一次 `gtag('event','generate_lead')`（不带联系方式），并加 `contact_click`（mailto / tel / WhatsApp）
+- 转化事件：`generate_lead`（接口返回 `ok: true` 后发一次，`lib/analytics.ts`）、`contact_click`（mailto / tel / WhatsApp，`components/GoogleAnalytics.tsx`）。TODO：在 GA4 把 `generate_lead` 标成关键事件。
 - `npm run dev` 不跑 Pages Function，本地表单会报错；要测表单用 `npm run build && npm run pages:dev`，密钥放 `.dev.vars`（已 gitignore）
 - 不提交密钥
 

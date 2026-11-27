@@ -210,6 +210,7 @@ export const docs = {
       { href: "/wholesale/", label: "Wholesale policy" },
       { href: "/contact/", label: "Contact" },
       { href: "/products/ppf/", label: "PPF pillar" },
+      { href: "/brands/nanolink/", label: "NANOLINK dealer" },
     ],
   },
   dealers: {
@@ -257,12 +258,12 @@ export const docs = {
     eyebrow: "Guides",
     title: "Selection and installation notes",
     description:
-      "Short PanPan Auto guides that help shops explain PPF and window film. Phase 1 drafts. Review dates TBD.",
-    lede: "Definitions and comparisons a shop can cite when explaining a job to a vehicle owner. These are Phase 1 drafts. A last-reviewed date is TBD.",
+      "PanPan Auto buyer guides for PPF and window tint: wholesale quotes, landed cost, sample tests, VLT/TSER/IRR, and TPU PPF basics.",
+    lede: "Practical guides for installation shops and distributors buying paint protection film and window tint wholesale.",
     shot: "yu7Mountain",
     crumbs: [home, { label: "Guides" }],
     paragraphs: [
-      "Two starter notes are live: what TPU paint protection film is, and how color PPF differs from a vinyl wrap. They avoid unpublished warranty years and thickness numbers.",
+      "Buyer guides for shops and distributors: how to request and compare wholesale PPF quotes, how to test a sample, how to read window tint specs, and what TPU PPF is. They avoid unpublished warranty years and thickness numbers.",
     ],
     links: [
       { href: "/blog/what-is-tpu-ppf/", label: "What is TPU PPF" },
@@ -273,20 +274,23 @@ export const docs = {
   tpuGuide: {
     path: "/blog/what-is-tpu-ppf/",
     eyebrow: "Guide",
-    title: "What is TPU paint protection film?",
+    title: "What is TPU PPF? Paint protection film explained",
     description:
-      "A plain definition of TPU PPF for tint shops, and how it differs from PVC, TPH, and ceramic coating. Specs TBD.",
-    lede: "TPU paint protection film is a clear or colored film bonded to factory paint to reduce stone chips, light scratches, and daily abrasion.",
+      "TPU PPF is paint protection film made of thermoplastic polyurethane. How it differs from PVC, TPH, and ceramic coating, and what shops should check.",
+    lede: "TPU PPF is paint protection film made from thermoplastic polyurethane: an elastic, clear or colored layer bonded over car paint to absorb stone chips, light scratches, and road abrasion. TPU stretches around curves and recovers its shape, which is why current premium PPF lines use it instead of PVC.",
     shot: "su7Coast",
     crumbs: [home, { href: "/blog/", label: "Guides" }, { label: "What is TPU PPF" }],
     paragraphs: [
-      "PPF is not a ceramic coating, and it is not a substitute for careful driving or maintenance. PVC and TPH are different material families. Confirm the material line on the authorized assortment before you describe it to a customer.",
-      "PanPan Auto wholesales ISF and related NKODA / NANOLINK film to shops and distributors. Thickness, self-healing behavior, and warranty years are TBD and should be read from the official brand page. This note is a Phase 1 draft; the last-reviewed date is TBD.",
+      "Quick answer for shops: TPU is the film material, not a brand or a coating. A TPU PPF roll is usually a TPU base layer with an adhesive underneath and a top coat on the surface. The top coat decides gloss or matte finish, stain resistance, and whether light swirl marks fade with heat (often sold as self-healing). Whether a given SKU has a self-healing top coat is confirmed on its data sheet, not assumed.",
+      "TPU vs PVC: PVC film costs less but is stiffer, harder to stretch around complex panels, and tends to yellow and harden sooner outdoors. TPU vs TPH: TPH is a PVC-based hybrid sold as a cheaper middle option; it does not have the same elasticity or recovery as TPU. TPU vs ceramic coating: a ceramic coating is a thin liquid-applied layer for gloss and easier washing. It does not stop stone chips. Many shops install PPF on high-impact panels and coat the rest.",
+      "What to ask a supplier before stocking TPU PPF: the base material stated in writing (TPU, not TPH), total thickness and test method, top-coat type, finish, roll width and length, the written warranty terms for that SKU, and installation guidance. Thickness, self-healing behavior, and warranty years for the ISF, NKODA, and NANOLINK lines PanPan Auto supplies are TBD on this site and are confirmed per quote.",
+      "PanPan Auto wholesales TPU paint protection film to installation shops and distributors as an authorized multi-brand dealer, not as the factory. Send the finish, roll size, quantity, and delivery city to get a quote.",
     ],
     links: [
       { href: "/products/ppf/tpu/", label: "TPU series" },
-      { href: "/products/ppf/", label: "PPF pillar" },
-      { href: "/blog/ppf-vs-vinyl-wrap/", label: "Color PPF vs vinyl" },
+      { href: "/blog/clear-gloss-vs-matte-ppf/", label: "Clear gloss vs matte PPF" },
+      { href: "/blog/wholesale-ppf-quote-checklist/", label: "Wholesale quote checklist" },
+      { href: "/contact/?intent=wholesale", label: "Request a quote" },
     ],
   },
   vinylGuide: {
@@ -306,6 +310,28 @@ export const docs = {
       { href: "/products/ppf/color/", label: "Color PPF" },
       { href: "/blog/what-is-tpu-ppf/", label: "What is TPU PPF" },
       { href: "/contact/", label: "Inquiry" },
+    ],
+  },
+  nanolink: {
+    path: "/brands/nanolink/",
+    eyebrow: "NANOLINK",
+    title: "NANOLINK PPF dealer for shops and distributors",
+    description:
+      "PanPan Auto is an authorized NANOLINK dealer and distributor. Wholesale NANOLINK paint protection film for installers and regional dealers.",
+    lede: "PanPan Auto is an authorized dealer and distributor of NANOLINK auto film. Installation shops and regional distributors can buy NANOLINK paint protection film wholesale from us, request samples, and ask about becoming a NANOLINK installer in their area.",
+    shot: "yu7Street",
+    crumbs: [home, { href: "/products/", label: "Film" }, { label: "NANOLINK" }],
+    paragraphs: [
+      "Who this page is for: tint and detailing shops looking for a NANOLINK PPF supplier, distributors comparing NANOLINK dealers, and buyers searching for where NANOLINK film is sold outside China. PanPan Auto sells to businesses. We do not install film for vehicle owners and we are not the NANOLINK factory.",
+      "Looking for a NANOLINK installer near you? PanPan Auto does not run retail bays. Send your city in an inquiry and we will tell you whether a partner shop we supply is in that area. Shops that want to offer NANOLINK film can apply as a trade buyer through the same form.",
+      "What we supply: NANOLINK paint protection film within the series our written authorization covers, alongside ISF and NKODA film. The exact NANOLINK series, finishes, roll sizes, thickness, and warranty terms are TBD on this page and are confirmed per quote from the brand's current documents.",
+      "How to order: send your company name, country, the NANOLINK series or finish you want, roll size, quantity, and delivery city. Samples, MOQ, lead time, and Incoterms are confirmed in the reply.",
+    ],
+    links: [
+      { href: "/contact/?intent=wholesale", label: "Request a NANOLINK quote" },
+      { href: "/dealers/apply/", label: "Dealer application" },
+      { href: "/products/ppf/", label: "PPF series" },
+      { href: "/about/", label: "About the authorization" },
     ],
   },
 } as const satisfies Record<string, Doc>;
